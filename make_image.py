@@ -102,6 +102,6 @@ if __name__ == '__main__':
 
     # 运行镜像
     exec_commands(ssh2,
-                  "docker run -tid -p " + port + ":" + port + " " + host_str + " --name " + image_name + " 192.168.59.163:5000/" + image_name + " bin/bash")
+                  "docker run -d -p " + port + ":" + port + " " + host_str + " --name " + image_name + " 192.168.59.163:5000/" + image_name)
 
     print ("hello,world")
