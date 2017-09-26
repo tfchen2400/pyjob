@@ -30,7 +30,7 @@ def generate_docker_file(port, jar_name, yml):
     fp.write("EXPOSE " + port + "\n")
     fp.write("ADD " + jar_name + " /home" + "\n")
     fp.write(
-        'CMD ["java", "-jar","/home/eureka-server-1.0.0.jar --spring.config.location=classpath:' + yml + '"]' + "\n")
+        'CMD ["java", "-jar","/home/eureka-server-1.0.0.jar","--spring.config.location=classpath:' + yml + '"]' + "\n")
 
 
 def exec_commands(ssh, cmd):
