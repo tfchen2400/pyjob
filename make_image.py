@@ -92,7 +92,7 @@ if __name__ == '__main__':
     exec_commands(ssh2, "docker stop " + image_name)
 
     # 删除容器
-    # exec_commands(ssh2, "docker rm " + image_name)
+    exec_commands(ssh2, "docker rm " + image_name)
 
     # 删除镜像
     exec_commands(ssh2, "docker rmi 192.168.59.163:5000/" + image_name)
