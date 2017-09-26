@@ -34,6 +34,7 @@ def generate_docker_file(port, jar_name, yml):
 
 
 def exec_commands(ssh, cmd):
+    print (cmd)
     stdin, stdout, stderr = ssh.exec_command(cmd)
     results = stdout.read()
     print (results)
@@ -58,6 +59,10 @@ if __name__ == '__main__':
     yml = sys.argv[6]
     # 镜像名字
     image_name = sys.argv[7]
+
+    host_str = sys.argv[8]
+
+    host_str = host_str.replace("|", " ")
 
     # ssh到目标服务
     ssh1 = ssh("192.168.59.163", "root", private_key_path)
@@ -87,7 +92,7 @@ if __name__ == '__main__':
     exec_commands(ssh2, "docker stop " + image_name)
 
     # 删除容器
-    exec_commands(ssh2, "docker rm " + image_name)
+    # exec_commands(ssh2, "docker rm " + image_name)
 
     # 删除镜像
     exec_commands(ssh2, "docker rmi 192.168.59.163:5000/" + image_name)
@@ -97,6 +102,6 @@ if __name__ == '__main__':
 
     # 运行镜像
     exec_commands(ssh2,
-                  "docker run -d -p " + port + ":" + port + " --name " + image_name + " 192.168.59.163:5000/" + image_name)
+                  "docker run -tid -p " + port + ":" + port + " " + host_str + " --name " + image_name + " 192.168.59.163:5000/" + image_name + " bin/bash")
 
     print ("hello,world")
