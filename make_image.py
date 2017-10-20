@@ -34,10 +34,10 @@ def generate_docker_file(port, jar_name, yml):
 
 
 def exec_commands(ssh, cmd):
-    print (cmd)
+    print(cmd)
     stdin, stdout, stderr = ssh.exec_command(cmd)
     results = stdout.read()
-    print (results)
+    print(results)
     return results
 
 
@@ -77,6 +77,9 @@ if __name__ == '__main__':
     # 把docker file 扔到服务器去
     scp(ssh1, "Dockerfile", "Dockerfile", target_floder)
 
+    # 删除镜像
+    exec_commands(ssh1, "docker rmi 192.168.59.163:5000/" + image_name)
+
     # 制作镜像
     exec_commands(ssh1, "docker build -t 192.168.59.163:5000/" + image_name + " " + target_floder)
 
@@ -104,4 +107,4 @@ if __name__ == '__main__':
     exec_commands(ssh2,
                   "docker run -d -p " + port + ":" + port + " " + host_str + " --name " + image_name + " 192.168.59.163:5000/" + image_name)
 
-    print ("hello,world")
+    print("hello,world")
