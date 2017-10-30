@@ -24,5 +24,5 @@ if __name__ == '__main__':
     for i in range(100000):
         time.sleep(0.2)
         print(i)
-        req.url = 'http://127.0.0.1:8051/client/center/chentf/put?document=' + str(i)
+        req.url = 'http://192.168.59.236:8051/client/center/chentf/put?document=' + str(i)
         req.do_request()

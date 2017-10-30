@@ -30,7 +30,8 @@ def generate_docker_file(port, jar_name, yml):
     fp.write("EXPOSE " + port + "\n")
     fp.write("ADD " + jar_name + " /home" + "\n")
     fp.write(
-        'CMD ["java", "-jar","/home/' + jar_name + '","--spring.config.location=classpath:' + yml + '"]' + "\n")
+        'CMD ["java", "-jar","/home/' + jar_name + '","--spring.config.location=classpath:' + yml +
+        '","-Xms256m -Xmx256m -Xmn100m -Xss128k"]' + "\n")
 
 
 def exec_commands(ssh, cmd):
