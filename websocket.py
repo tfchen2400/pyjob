@@ -14,9 +14,8 @@ async def handler(websocket, path):
     connected.add(websocket)
     try:
         # Implement logic here.
-        await asyncio.wait([ws.send("Hello!" + str(websocket)) for ws in connected])
-        while True:
-            await asyncio.sleep(10)
+        async for message in websocket:
+            await asyncio.wait([ws.send(message + str(websocket)) for ws in connected])
     finally:
         # Unregister.
         connected.remove(websocket)
