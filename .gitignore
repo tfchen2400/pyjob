@@ -1,4 +1,4 @@
 .idea/
 Dockerfile
 venv/
-config
+config.ini
