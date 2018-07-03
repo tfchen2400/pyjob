@@ -1,0 +1,31 @@
+{
+    "keyPrefix": "euler",
+    "pools": {##aaaaaa##
+        "euler": {
+            "class": "com.lianlian.brain.biss.dcs.clients.memcached.BinaryMemcachedConnectionPool",
+            "connectTimeout": 30,
+            "threadcount": 1,
+            "keepAliveInterval": 60000,
+            "dataTimeout": 30,
+            "soTimeout": 30,
+            "connectionUrls": "172.26.12.92:11211"
+        }
+    },
+    "services": {
+        "euler": {
+            "useconsistenthash": true,
+            "params": [
+                {
+                    "name": "a",
+                    "value": "1"
+                }
+            ],
+            "poolref": [
+                {
+                    "name": "euler",
+                    "weights": 5
+                }
+            ]
+        }
+    }
+}
